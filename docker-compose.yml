@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  # 1. Web PHP
+  web:
+    build: .
+    container_name: php_web_app
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+
+  # 2. Database MySQL (Đã cài mật khẩu root = root)
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: shop_giay_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db_backup.sql:/docker-entrypoint-initdb.d/db_backup.sql
+
+  # 3. phpMyAdmin Tool
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_tool
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root
+    depends_on:
+      - db
+
+volumes:
+  db_data:
+
