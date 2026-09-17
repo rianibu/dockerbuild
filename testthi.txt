@@ -1,1 +1,2 @@
 code lan 1
+code lan 2
