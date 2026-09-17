@@ -1,5 +1,0 @@
-lan 1
- HEAD
-lan 2 sua code nay
-lan 3 sua code nay
-lan2
