@@ -1,1 +1,2 @@
-bai 1
+bai 1 sua lan 2  
+bai 2
